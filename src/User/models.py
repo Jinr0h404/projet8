@@ -1,10 +1,12 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class User(models.Model):
+class User(AbstractUser):
     """this class is for the django orm, it gives the parameters for the
             creation of the table of the same name in the psql database."""
-    name = models.CharField(max_length=200, unique=True, null=False, verbose_name="Nom")
+    username = models.CharField(max_length=200, null=False, verbose_name="Nom")
     email = models.EmailField(max_length=45, unique=True, null=False)
-    password = models.CharField(max_length=45, null=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']

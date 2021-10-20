@@ -2,6 +2,14 @@ from django.db import models
 
 
 # Create your models here.
+class Category(models.Model):
+    category_name = models.CharField(max_length=200, unique=True, verbose_name="Catégorie")
+
+
+class Store(models.Model):
+    store_name = models.CharField(max_length=100, unique=True, verbose_name="Magasin")
+
+
 class Product(models.Model):
     """this class is for the django orm, it gives the parameters for the
         creation of the table of the same name in the psql database."""
@@ -12,11 +20,3 @@ class Product(models.Model):
     url = models.URLField(null=True)
     category = models.ManyToManyField(Category)
     store = models.ManyToManyField(Store)
-
-
-class Store(models.Model):
-    store_name = models.CharField(max_length=100, unique=True, verbose_name="Magasin")
-
-
-class Category(models.Model):
-    category_name = models.CharField(max_length=200, unique=True, verbose_name="Catégorie")
