@@ -22,4 +22,5 @@ urlpatterns = [
     path('content/', admin.site.urls),
     path('', index, name="index"),
     path('favoris/', include("Favorite.urls")),
+    path('user/', include("User.urls")),
 ]
