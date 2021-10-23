@@ -29,7 +29,11 @@
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="/user/signup">Mon compte</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Mes aliments</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Connexion</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="/user/logout">Se déconnecter</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="/user/signin">Connexion</a></li>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                 </div>
