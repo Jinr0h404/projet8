@@ -22,17 +22,21 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6 text-center">
                         <h2 class="mt-0">S'inscrire</h2>
+                        {% if form.errors %}
+                            {{ form.errors }}
+                        {% endif %}
                         <hr class="divider" />
-                        <p class="text-muted mb-5">Vous souhaitez un renseignement ou peut être nous donner votre avis, n'hésitez pas</p>
+                        <p class="text-muted mb-5">Vous souhaitez retrouver vos favoris, inscrivez-vous vite</p>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
                         <div class="col-lg-8 align-self-baseline">
                             <!-- ajout d'un formulaire pour l'inscription que l'on récupère depuis la vue-->
-                            <form>
+                            <form method="POST">
                                 <table>
                                     {{ form.as_table }}
+                                    {% csrf_token %}
                                 </table>
                                 <input type="submit" value="S'inscrire" />
                             </form>

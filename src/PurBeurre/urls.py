@@ -23,4 +23,5 @@ urlpatterns = [
     path('', index, name="index"),
     path('favoris/', include("Favorite.urls")),
     path('user/', include("User.urls")),
+    path('product/', include("Product.urls")),
 ]
