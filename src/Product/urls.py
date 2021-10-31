@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import index
+from .views import search, search_substitute
 
 urlpatterns = [
-    path('', index, name="product-index"),
+    path('search', search, name="product-search"),
+    path('search_substitute', search_substitute, name="product-search_substitute"),
 ]

@@ -27,8 +27,15 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/user/signup">Mon compte</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/product/">Mes aliments</a></li>
+                        <li class="nav-item">
+                            <form class="col-md-6 col-md-offset-3 text-center" action="{% url 'product-search'%}" method="get" accept-charset="utf-8">
+                                <div class="form-group">
+                                    <input type="search" id="searchForm" class="form-control" placeholder="chercher" name="query">
+                                </div>
+                            </form>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/user/account">Mon compte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/favoris/">Mes aliments</a></li>
                         {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="/user/logout">Se déconnecter</a></li>
                         {% else %}

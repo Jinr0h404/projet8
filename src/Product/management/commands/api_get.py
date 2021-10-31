@@ -10,9 +10,9 @@ class Api_get:
         checks if the main categories are correctly entered for the product
         and creates a dictionary list."""
         self.product_list = []
-        self.pages = 5
+        self.pages = 20
         self.json = 1
-        self.page_size = 2
+        self.page_size = 50
         self.request_url = "https://fr.openfoodfacts.org/cgi/search.pl"
         self.clean_list = []
 
@@ -36,6 +36,23 @@ class Api_get:
                     print(product.get("product_name_fr"))
                     """generate a list of dict where each dict = a product"""
                     if product.get("product_name_fr").lower() not in self.product_list:
+                        nutriments = product.get("nutriments")
+                        if not "fat_100g" in nutriments:
+                            fat = "NC"
+                        else:
+                            fat = nutriments["fat_100g"]
+                        if not "saturated-fat_100g" in nutriments:
+                            saturated_fat = "NC"
+                        else:
+                            saturated_fat = nutriments["saturated-fat_100g"]
+                        if not "salt_100g" in nutriments:
+                            salt = "NC"
+                        else:
+                            salt = nutriments["salt_100g"]
+                        if not "sugars_100g" in nutriments:
+                            sugar = "NC"
+                        else:
+                            sugar = nutriments["sugars_100g"]
                         self.product_list.append(
                             {
                                 "name": product.get("product_name_fr").lower(),
@@ -47,8 +64,12 @@ class Api_get:
                                     "nutrition_grade_fr").upper(),
                                 "description": product.get("generic_name_fr"),
                                 "url": product.get("url"),
+                                "product_image":product.get("image_url"),
+                                "fat": fat,
+                                "saturated_fat": saturated_fat,
+                                "salt": salt,
+                                "sugar": sugar,
                             }
                         )
-        print(self.product_list)
         return(self.product_list)
     print("j'ai fini de check l'api open food")

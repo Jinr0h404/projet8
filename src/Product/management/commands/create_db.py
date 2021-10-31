@@ -1,9 +1,9 @@
 from django.core.management.base import BaseCommand
 from Product.models import Product, Category, Store
 from .api_get import Api_get
-import requests
-from User.models import User
-from Favorite.models import Favorites
+#import requests
+#from User.models import User
+#from Favorite.models import Favorites
 
 class Command(BaseCommand):
     help = 'initialize database'
@@ -22,6 +22,11 @@ class Command(BaseCommand):
                 description=i["description"],
                 nutriscore=i["nutriscore"],
                 url=i["url"],
+                product_image=i["product_image"],
+                fat=str(i["fat"]),
+                saturated_fat=str(i["saturated_fat"]),
+                salt=str(i["salt"]),
+                sugar=str(i["sugar"]),
             )
             last_product = Product.objects.last()
             prod_id = last_product.pk
@@ -34,14 +39,9 @@ class Command(BaseCommand):
                 """ strip() remove spaces before and after item"""
                 new_category, created = Category.objects.get_or_create(
                     category_name=category)
-                print("attention la première categorie est enregistrée")
-                print(prod_id, 'est identifiant du prduit')
-                print("on passe à l'id category")
-                last_category = Category.objects.last()
-                cat_id = last_category.pk
+                cat_id = new_category.pk
                 last_product.category.add(
                     cat_id)
-                print("j'ai bien ajouté ma catégorie avec mon produit dans la table d'association")
             """ make a loop for each store"""
             for store in i["store"]:
                 """like category, the value of the store key in the dictionary
@@ -49,8 +49,6 @@ class Command(BaseCommand):
                 get_or_create function"""
                 store = store.strip()
                 new_store, created = Store.objects.get_or_create(store_name=store)
-                last_store = Store.objects.last()
-                store_id = last_store.pk
+                store_id = new_store.pk
                 last_product.store.add(
                     store_id)
-                print("j'ai bien ajouté mon magasin avec mon produit dans la table d'association")
