@@ -64,4 +64,17 @@
                 </div>
             </div>
         </div>
+        <div class="clearfix"></div>
+            <nav aria-label="">
+                <ul class="pager">
+                    {% if page_obj.has_previous %}
+                        <a href="?query={{query}}&page=1">« première</a>
+                        <li><a href="?query={{query}}&page={{ page_obj.previous_page_number }}">Précédent</a></li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <li><a href="?query={{query}}&page={{ page_obj.next_page_number }}">Suivant</a></li>
+                        <a href="?query={{query}}&page={{ page_obj.paginator.num_pages }}">dernière »</a>
+                    {% endif %}
+                </ul>
+            </nav>
 {% endblock %}

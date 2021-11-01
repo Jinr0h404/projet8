@@ -15,13 +15,14 @@ def search(request):
     for o in page_obj:
         print (o)
     print("et maintenant la page 2")
-    page_obj = paginator.get_page(2)
+    #page_obj = paginator.get_page(page)
     for o in page_obj:
         print(o)
     context = {
         'page_obj': page_obj,
         'nom_produit': page_obj,
-        'paginate':True
+        'paginate':True,
+        "query":query,
     }
     return render(request, 'product/search.html', context)
 
@@ -65,6 +66,7 @@ def search_substitute(request):
     context = {
         'page_obj': page_obj,
         'nom_produit': page_obj,
-        'paginate': True
+        'paginate': True,
+        'query':query,
     }
     return render(request, 'product/search_substitute.html', context)
