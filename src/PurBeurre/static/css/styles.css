@@ -11443,3 +11443,42 @@ header.masthead h1, header.masthead .h1 {
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption, #portfolio .container-sm .portfolio-box:hover .portfolio-box-caption, #portfolio .container-md .portfolio-box:hover .portfolio-box-caption, #portfolio .container-lg .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xl .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
+
+.nutriLetter{
+    margin-left: auto;
+}
+
+.prod_to_substitute{
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 4.5rem);
+  background-color: black;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.portfolioProduct {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 0.5px solid black;
+    padding: 10px;
+}
+
+.btn-favorite {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form_recherche {
+    display: flex;
+    margin: auto;
+}
+
+.div_recherche {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}

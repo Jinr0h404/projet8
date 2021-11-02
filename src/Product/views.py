@@ -44,29 +44,22 @@ def substitute_getter(id_product):
 def search_substitute(request):
     query = request.GET.get('query')
     query_id = Product.objects.filter(pk=query)
-    print(query)
-    print(query_id)
-    #prod_id = query_id.pk
     products_tuple = substitute_getter(query)
     products_list = []
     for i in products_tuple:
         products_list.append(Product.objects.get(pk=i[0]))
-    print(products_list)
-    #products_list = Product.objects.get(pk=query)
-    title = "Résultats pour la requête %s"%query
     paginator = Paginator(products_list, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    #try:
-    #page_obj = paginator.get_page(page_number)
-    #except PageNotAnInteger:
-        #product = paginator.page(1)
-    #except EmptyPage:
-        #product = paginator.page(paginator.num_pages)
     context = {
         'page_obj': page_obj,
         'nom_produit': page_obj,
         'paginate': True,
         'query':query,
+        'query_id':query_id,
     }
     return render(request, 'product/search_substitute.html', context)
+
+def product_info(request):
+
+    return render(request, 'product/product_info.html')

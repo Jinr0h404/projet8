@@ -3,11 +3,13 @@
 {% block content %}
 {% load static %}
         <!-- Masthead-->
-        <header class="masthead">
+        <header class="masthead prod_to_substitute">
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Du gras, oui, mais de qualité!</h1>
+                        {% for product in query_id %}
+                        <h1 class="text-white font-weight-bold">{{product.product_name}}</h1>
+                        {% endfor %}
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
@@ -25,39 +27,30 @@
             </div>
         </section>
         <!-- Portfolio-->
-        <!--{% for product in products %}
-            <div class="col-sm-4 text-center">
-                <a href="/">
-                <img class="img-responsive" src="{{ product.product_image }}" alt="{{ product.product_name }}">
-                </a>
-                <h3><a href="/">{{ product.product_name }}</a></h3>
-            </div>
-            {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
-        {% endfor %}-->
-
         <div id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row g-0">
                     {% for product in page_obj %}
-                        <div class="col-lg-4 col-sm-6 text-center">
-                            <a class="portfolio-box" href="{{ product.product_image }}" title="{{ product.product_name }}">
+                        <div class="col-lg-4 col-sm-6 text-center portfolioProduct">
+                            {% if product.nutriscore == 'A' %}
+                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.product_name }}">
+                            {% elif product.nutriscore == 'B' %}
+                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.product_name }}">
+                            {% elif product.nutriscore == 'C' %}
+                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.product_name }}">
+                            {% elif product.nutriscore == 'D' %}
+                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.product_name }}">
+                            {% elif product.nutriscore == 'E' %}
+                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.product_name }}">
+                            {% endif %}
+                            <a class="portfolio-box" href="product_info" title="{{ product.product_name }}" target="_blank">
                                 <img class="img-responsive" src="{{ product.product_image }}" alt="{{ product.product_name }}">
                                 <div class="portfolio-box-caption">
-                                    <div class="project-category text-white-50">Category</div>
+                                    <div class="project-category text-white-50">Voir fiche produit</div>
                                     <div class="project-name">{{ product.product_name }}</div>
                                 </div>
                             </a>
-                            {% if product.nutriscore == 'A' %}
-                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-a.svg' %}" alt="{{ product.product_name }}">
-                            {% elif product.nutriscore == 'B' %}
-                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-b.svg' %}" alt="{{ product.product_name }}">
-                            {% elif product.nutriscore == 'C' %}
-                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-c.svg' %}" alt="{{ product.product_name }}">
-                            {% elif product.nutriscore == 'D' %}
-                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-d.svg' %}" alt="{{ product.product_name }}">
-                            {% elif product.nutriscore == 'E' %}
-                                <img class="img-responsive" src="{% static 'assets/img/nutriscore-e.svg' %}" alt="{{ product.product_name }}">
-                            {% endif %}
+                            <a class="btn btn-primary btn-xl btn-favorite" href="#about">ajouter aux favoris</a>
                         </div>
                         {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
                     {% endfor %}
