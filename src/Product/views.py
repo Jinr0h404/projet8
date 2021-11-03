@@ -60,6 +60,12 @@ def search_substitute(request):
     }
     return render(request, 'product/search_substitute.html', context)
 
-def product_info(request):
-
-    return render(request, 'product/product_info.html')
+def product_info(request, product_id):
+    query = product_id
+    query_id = Product.objects.filter(pk=query)
+    context = {
+        'nom_produit': query_id,
+        'query': query,
+        'query_id': query_id,
+    }
+    return render(request, 'product/product_info.html', context)

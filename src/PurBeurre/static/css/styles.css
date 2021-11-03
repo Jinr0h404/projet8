@@ -11464,6 +11464,7 @@ header.masthead h1, header.masthead .h1 {
     justify-content: space-between;
     border: 0.5px solid black;
     padding: 10px;
+    margin: 10px;
 }
 
 .btn-favorite {
@@ -11472,13 +11473,21 @@ header.masthead h1, header.masthead .h1 {
   margin-right: auto;
 }
 
-.form_recherche {
+.form_search {
     display: flex;
     margin: auto;
 }
 
-.div_recherche {
+.div_form_search {
+    display: flex;
+}
+
+.div_search {
     display: flex;
     flex-direction: column;
     align-content: center;
+}
+
+.img-responsive {
+    border-radius: 4%;
 }
