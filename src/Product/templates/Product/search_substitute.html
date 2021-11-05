@@ -43,7 +43,11 @@
                                 </div>
                             </a>
                             {% if user.is_authenticated %}
-                                <a class="btn btn-primary btn-xl btn-favorite" href="#about">ajouter aux favoris</a>
+                             <FORM action="{% url 'product-save_substitute'%}" method="post">
+                                <BUTTON name="save" value="{{product.id}},{{query}}" type="submit" class="btn btn-primary btn-xl">
+                                Sauvegarder</BUTTON>
+                                 {% csrf_token %}
+                             </FORM>
                             {% else %}
                                 <p>Ajouter aux favoris ? <a href="/user/signin">connectez-vous maintenant !</a></p>
                             {% endif %}

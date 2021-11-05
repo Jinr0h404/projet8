@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from Product.models import Product
+from Favorite.models import Favorites
+from User.models import CustomUser
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
@@ -43,6 +45,7 @@ def substitute_getter(id_product):
 
 def search_substitute(request):
     query = request.GET.get('query')
+    print(query)
     query_id = Product.objects.filter(pk=query)
     products_tuple = substitute_getter(query)
     products_list = []
@@ -58,7 +61,29 @@ def search_substitute(request):
         'query':query,
         'query_id':query_id,
     }
+
     return render(request, 'product/search_substitute.html', context)
+
+def save_substitute(request):
+    query_substitute = request.POST['save']
+    query_list = query_substitute.split(",")
+    print(query_substitute)
+    print(query_list)
+    #print(query_substitute[0])
+    #print(query_substitute[1])
+    if request.method == 'POST':
+        query = Product.objects.get(pk=query_list[1])
+        #query = query
+        user_connected = CustomUser.objects.get(pk=request.user.id)
+        print(user_connected)
+        substitute_id = Product.objects.get(pk=query_list[0])
+        favorite_substitute = Favorites.objects.create(
+            substitute_id = substitute_id,
+            product_id = query,
+            user_id = user_connected,
+        )
+
+    return render(request, "Favorite/index.html")
 
 def product_info(request, product_id):
     query = product_id
