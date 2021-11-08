@@ -67,15 +67,9 @@ def search_substitute(request):
 def save_substitute(request):
     query_substitute = request.POST['save']
     query_list = query_substitute.split(",")
-    print(query_substitute)
-    print(query_list)
-    #print(query_substitute[0])
-    #print(query_substitute[1])
     if request.method == 'POST':
         query = Product.objects.get(pk=query_list[1])
-        #query = query
         user_connected = CustomUser.objects.get(pk=request.user.id)
-        print(user_connected)
         substitute_id = Product.objects.get(pk=query_list[0])
         favorite_substitute = Favorites.objects.create(
             substitute_id = substitute_id,

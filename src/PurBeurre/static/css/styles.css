@@ -4604,6 +4604,8 @@ textarea.form-control-lg {
 .card-img-top,
 .card-img-bottom {
   width: 100%;
+  object-fit: cover;
+  height: 11vw;
 }
 
 .card-img,
@@ -11462,9 +11464,7 @@ header.masthead h1, header.masthead .h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 0.5px solid black;
     padding: 10px;
-    margin: 10px;
 }
 
 .btn-favorite {
@@ -11490,4 +11490,8 @@ header.masthead h1, header.masthead .h1 {
 
 .img-responsive {
     border-radius: 4%;
+}
+
+.card-header {
+    text-center: left;
 }

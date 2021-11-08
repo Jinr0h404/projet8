@@ -23,34 +23,42 @@
             <div class="container-fluid p-0">
                 <div class="row g-0">
                     {% for product in page_obj %}
-                        <div class="col-lg-4 col-sm-6 text-center portfolioProduct">
-                            {% if product.nutriscore == 'A' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.product_name }}">
-                            {% elif product.nutriscore == 'B' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.product_name }}">
-                            {% elif product.nutriscore == 'C' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.product_name }}">
-                            {% elif product.nutriscore == 'D' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.product_name }}">
-                            {% elif product.nutriscore == 'E' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.product_name }}">
-                            {% endif %}
-                            <a class="portfolio-box" href="product_info-{{ product.id }}" title="{{ product.product_name }}" target="_blank">
-                                <img class="img-responsive" src="{{ product.product_image }}" alt="{{ product.product_name }}">
-                                <div class="portfolio-box-caption">
-                                    <div class="project-category text-white-50">Voir fiche produit</div>
-                                    <div class="project-name">{{ product.product_name }}</div>
+                        <div class="col-lg-4 col-sm-6 text-center portfolioProduct card-deck">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                {% if product.nutriscore == 'A' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.product_name }}">
+                                {% elif product.nutriscore == 'B' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.product_name }}">
+                                {% elif product.nutriscore == 'C' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.product_name }}">
+                                {% elif product.nutriscore == 'D' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.product_name }}">
+                                {% elif product.nutriscore == 'E' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.product_name }}">
+                                {% endif %}
                                 </div>
-                            </a>
-                            {% if user.is_authenticated %}
-                             <FORM action="{% url 'product-save_substitute'%}" method="post">
-                                <BUTTON name="save" value="{{product.id}},{{query}}" type="submit" class="btn btn-primary btn-xl">
-                                Sauvegarder</BUTTON>
-                                 {% csrf_token %}
-                             </FORM>
-                            {% else %}
-                                <p>Ajouter aux favoris ? <a href="/user/signin">connectez-vous maintenant !</a></p>
-                            {% endif %}
+                                <div class="card-body">
+                                    <a class="portfolio-box" href="product_info-{{ product.id }}" title="{{ product.product_name }}" target="_blank">
+                                    <img class="img-responsive" src="{{ product.product_image }}" alt="{{ product.product_name }}">
+                                    <div class="portfolio-box-caption">
+                                        <div class="project-category text-white-50">Voir fiche produit</div>
+                                        <div class="project-name">{{ product.product_name }}</div>
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="card-footer">
+                                {% if user.is_authenticated %}
+                                <FORM action="{% url 'product-save_substitute'%}" method="post">
+                                    <BUTTON name="save" value="{{product.id}},{{query}}" type="submit" class="btn btn-primary btn-xl">
+                                    Sauvegarder</BUTTON>
+                                    {% csrf_token %}
+                                </FORM>
+                                {% else %}
+                                    <p>Ajouter aux favoris ? <a href="/user/signin">connectez-vous maintenant !</a></p>
+                                {% endif %}
+                                </div>
+                            </div>
                         </div>
                         {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
                     {% endfor %}
