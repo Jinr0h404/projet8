@@ -15,7 +15,7 @@
         <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-3 col-md-6 text-center">
+                    <div class="col-lg-6 col-md-6 text-center">
                         <div class="mt-5">
                             {% for product in query_id %}
                             {% if product.nutriscore == 'A' %}
@@ -31,9 +31,8 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 text-center">
+                    <div class="col-lg-6 col-md-6 text-center">
                         <div class="mt-5">
-                            <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">Repères nutritionnels pour 100g:</h3>
                             <p class="text-muted mb-0">Graisses: {{product.fat}}</p>
                             <p class="text-muted mb-0">Graisses Saturées: {{product.saturated_fat}}</p>
@@ -43,11 +42,17 @@
                     </div>
                     {% endfor %}
                 </div>
+                <div class="row gx-4 gx-lg-5 m-5">
                 {% for product in query_id %}
-                <div class="col-lg-8 align-self-baseline">
+                <div class="col-4">
+                </div>
+                <div class="col-8 align-self-baseline">
                     <a class="btn btn-primary btn-xl" href="{{ product.url }}" target="_blank">Voir la fiche d'Open Food Facts</a>
                 </div>
+                <div class="col-4">
+                </div>
                 {% endfor %}
+                </div>
             </div>
         </section>
 

@@ -21,19 +21,12 @@
             </div>
         </section>
         <!-- Portfolio-->
-        <!--{% for product in products %}
-            <div class="col-sm-4 text-center">
-                <a href="/">
-                <img class="img-responsive" src="{{ product.product_image }}" alt="{{ product.product_name }}">
-                </a>
-                <h3><a href="/">{{ product.product_name }}</a></h3>
-            </div>
-            {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
-        {% endfor %}-->
-
         <div id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row g-0">
+                    <div class="col">
+                    </div>
+                    <div class="col-8">
                 <table class="table table-sm table-bordered border-dark">
                     <tbody>
                     {% for product in page_obj %}
@@ -62,6 +55,9 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                    </div>
+                    <div class="col">
+                    </div>
                 </div>
             </div>
         </div>
