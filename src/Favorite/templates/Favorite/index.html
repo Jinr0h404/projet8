@@ -20,26 +20,36 @@
             <div class="container-fluid p-0">
                 <div class="row g-0">
                     {% for product in page_obj %}
-                        <div class="col-lg-4 col-sm-6 text-center portfolioProduct">
-                            {% if product.substitute_id.nutriscore == 'A' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.substitute_id.product_name }}">
-                            {% elif product.substitute_id.nutriscore == 'B' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.substitute_id.product_name }}">
-                            {% elif product.substitute_id.nutriscore == 'C' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.substitute_id.product_name }}">
-                            {% elif product.substitute_id.nutriscore == 'D' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.substitute_id.product_name }}">
-                            {% elif product.substitute_id.nutriscore == 'E' %}
-                                <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.substitute_id.product_name }}">
-                            {% endif %}
-                            <a class="portfolio-box" href="../product/product_info-{{ product.substitute_id.id }}" title="{{ product.substitute_id.product_name }}" target="_blank">
-                                <img class="img-responsive" src="{{ product.substitute_id.product_image }}" alt="{{ product.substitute_id.product_name }}">
-                                <div class="portfolio-box-caption">
-                                    <div class="project-category text-white-50">Voir fiche produit</div>
-                                    <div class="project-name">{{ product.substitute_id.product_name }}</div>
+                        <div class="col-lg-4 col-sm-6 text-center portfolioProduct card-deck">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-right">
+                                {% if product.substitute_id.nutriscore == 'A' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% elif product.substitute_id.nutriscore == 'B' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% elif product.substitute_id.nutriscore == 'C' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% elif product.substitute_id.nutriscore == 'D' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% elif product.substitute_id.nutriscore == 'E' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.substitute_id.product_name }}">
+                                {% endif %}
+                                    </div>
                                 </div>
-                            </a>
-                            <p>remplace l'aliment: {{ product.product_id.product_name }}</p>
+                                <div class="card-body">
+                                    <a class="portfolio-box" href="../product/product_info-{{ product.substitute_id.id }}" title="{{ product.substitute_id.product_name }}" target="_blank">
+                                    <img class="img-responsive" src="{{ product.substitute_id.product_image }}" alt="{{ product.substitute_id.product_name }}">
+                                    <div class="portfolio-box-caption">
+                                        <div class="project-category text-white-50">Voir fiche produit</div>
+                                        <div class="project-name">{{ product.substitute_id.product_name }}</div>
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="card-footer">
+                                    <p>remplace l'aliment: {{ product.product_id.product_name }}</p>
+                                </div>
+                            </div>
                         </div>
                         {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
                         {% empty %}

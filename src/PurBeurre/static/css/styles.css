@@ -11448,6 +11448,7 @@ header.masthead h1, header.masthead .h1 {
 
 .nutriLetter{
     margin-left: auto;
+    float-right
 }
 
 .prod_to_substitute{
@@ -11493,5 +11494,23 @@ header.masthead h1, header.masthead .h1 {
 }
 
 .card-header {
-    text-center: left;
+    text-center: right;
+}
+
+.little_img {
+    width: 50px;
+    height: 50px;
+}
+
+.little_nutriLetter {
+    width: 20px;
+    height: 30px;
+}
+
+.fas {
+    vertical-align: -25%
+}
+
+.fa-user {
+    vertical-align: -25%
 }

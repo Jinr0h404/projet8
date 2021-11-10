@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from Product.models import Product
 from Favorite.models import Favorites
@@ -77,7 +77,7 @@ def save_substitute(request):
             user_id = user_connected,
         )
 
-    return render(request, "Favorite/index.html")
+    return redirect("/favoris")
 
 def product_info(request, product_id):
     query = product_id
