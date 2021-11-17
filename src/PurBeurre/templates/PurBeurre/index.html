@@ -13,7 +13,7 @@
                     <div class="col-lg-8 align-self-baseline div_search">
                         <h2 class="text-white-75 mb-5">Trouver un produit de substitution pour ceux que vous consommez tous les jours</h2>
 
-                        <form class="col-md-6 col-md-offset-3 text-center form_search" action="product/search" method="get" accept-charset="utf-8">
+                        <form class="col-md-6 col-md-offset-3 text-center form_search" action="{% url 'product-search'%}" method="get" accept-charset="utf-8">
                             <div class="form-group div_form_search">
                                 <input id="searchForm" class="form-control" placeholder="Produit" name="query">
                                 <input type="submit" value="chercher" />
@@ -33,8 +33,8 @@
                     <div class="text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">Notre histoire</h3>
-                            <h4 class="text-muted mb-0">De la ratatouille aux croissants</h4>
+                            <h3 class="h4 mb-4">Notre histoire</h3>
+                            <h4 class="text-muted mb-4">De la ratatouille aux croissants</h4>
                             <p class="text-muted mb-0">
 Pur Beurre est l'initiative de deux amoureux de la gastronomie française, Colette Tatou et Rémy, que vous avez déjà certainement rencontrés dans notre excellent restaurant Ratatouille.
                             </p>

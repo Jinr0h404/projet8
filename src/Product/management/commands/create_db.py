@@ -23,6 +23,7 @@ class Command(BaseCommand):
                 nutriscore=i["nutriscore"],
                 url=i["url"],
                 product_image=i["product_image"],
+                product_image_little=i["product_image_little"],
                 fat=str(i["fat"]),
                 saturated_fat=str(i["saturated_fat"]),
                 salt=str(i["salt"]),

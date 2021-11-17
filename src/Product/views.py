@@ -1,25 +1,16 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 from Product.models import Product
-from Favorite.models import Favorites
 from User.models import CustomUser
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from Favorite.models import Favorites
+from django.core.paginator import Paginator
 
 # Create your views here.
 def search(request):
     query = request.GET.get('query')
-    products_list = Product.objects.filter(product_name__icontains=query)
-    print(products_list)
+    products_list = Product.objects.filter(product_name__icontains=query).order_by('id')
     paginator = Paginator(products_list, 6)
-
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    for o in page_obj:
-        print (o)
-    print("et maintenant la page 2")
-    #page_obj = paginator.get_page(page)
-    for o in page_obj:
-        print(o)
     context = {
         'page_obj': page_obj,
         'nom_produit': page_obj,
@@ -29,8 +20,8 @@ def search(request):
     return render(request, 'product/search.html', context)
 
 def substitute_getter(id_product):
-    produit = Product.objects.get(pk=id_product)
-    list_brut = Product.objects.filter(category__in=produit.category.all())
+    produit = get_object_or_404(Product, pk=id_product)
+    list_brut = Product.objects.filter(category__in=produit.category.all()).exclude(pk=id_product)
     list_order_value = []
     for prod in list_brut:
         list_order_value.append(prod.pk)
@@ -45,7 +36,6 @@ def substitute_getter(id_product):
 
 def search_substitute(request):
     query = request.GET.get('query')
-    print(query)
     query_id = Product.objects.filter(pk=query)
     products_tuple = substitute_getter(query)
     products_list = []

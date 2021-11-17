@@ -65,6 +65,7 @@ class Api_get:
                                 "description": product.get("generic_name_fr"),
                                 "url": product.get("url"),
                                 "product_image":product.get("image_url"),
+                                "product_image_little": product.get("image_small_url"),
                                 "fat": fat,
                                 "saturated_fat": saturated_fat,
                                 "salt": salt,

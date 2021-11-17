@@ -37,12 +37,12 @@
                                 </div>
                             </form>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="/user/account"><i class="far fa-user fa-lg"></i></a></li>
-                        <li class="nav-item"><a class="nav-link" href="/favoris/"><img src="{% static 'assets/img/noun_Carrot_29691.png' %}" class="bi bi-person fs-2 mb-3"width="30" height="30"/></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/account" title="mon compte"><i class="far fa-user fa-lg"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/favoris/" title="mes favoris"><i class="fas fa-carrot fa-lg"></i></a></li>
                         {% if user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="/user/logout"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/user/logout" title="se déconnecter"><i class="fas fa-sign-out-alt fa-lg"></i></a></li>
                         {% else %}
-                            <li class="nav-item"><a class="nav-link" href="/user/signin"><i class="fas fa-sign-in-alt fa-lg"></i></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/user/signin" title="se connecter"><i class="fas fa-sign-in-alt fa-lg"></i></a></li>
                         {% endif %}
                     </ul>
                 </div>
