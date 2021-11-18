@@ -20,13 +20,17 @@ def search(request):
     return render(request, 'product/search.html', context)
 
 def substitute_getter(id_product):
-    produit = get_object_or_404(Product, pk=id_product)
+    """We create a list of all the product objects having a common category with the requested product.
+    For each product of the object list a new list is filled with the corresponding id.
+    Returns a list of tuple (productID, nbrCategory in common) sorted in descending order of values nbr Common Category"""
+    produit = Product.objects.get(pk=id_product)
     list_brut = Product.objects.filter(category__in=produit.category.all()).exclude(pk=id_product)
     list_order_value = []
     for prod in list_brut:
         list_order_value.append(prod.pk)
 
     def count_to_dict(lst):
+        """loop on the list of id's to create a dictionary of key = product id / value = count how many common categories"""
         return {k: lst.count(k) for k in
                 lst}
 

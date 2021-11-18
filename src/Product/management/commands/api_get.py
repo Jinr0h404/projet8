@@ -33,7 +33,6 @@ class Api_get:
                         and product.get("nutrition_grade_fr")
                         and product.get("stores")
                 ):
-                    print(product.get("product_name_fr"))
                     """generate a list of dict where each dict = a product"""
                     if product.get("product_name_fr").lower() not in self.product_list:
                         nutriments = product.get("nutriments")

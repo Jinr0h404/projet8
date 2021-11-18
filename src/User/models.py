@@ -42,3 +42,6 @@ class CustomUser(AbstractBaseUser):
 
     def has_module_perms(selfself, app_label):
         return True
+
+    def __str__(self):
+        return f'{self.username} | {self.email}'

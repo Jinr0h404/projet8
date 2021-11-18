@@ -7,11 +7,17 @@ class Category(models.Model):
         creation of the table of the same name in the psql database."""
     category_name = models.CharField(max_length=200, unique=True, verbose_name="Catégorie")
 
+    def __str__(self):
+        return f'{self.category_name}'
+
 
 class Store(models.Model):
     """this class is for the django orm, it gives the parameters for the
         creation of the table of the same name in the psql database."""
     store_name = models.CharField(max_length=100, unique=True, verbose_name="Magasin")
+
+    def __str__(self):
+        return f'{self.store_name}'
 
 
 class Product(models.Model):
@@ -30,4 +36,7 @@ class Product(models.Model):
     url = models.URLField(null=True)
     category = models.ManyToManyField(Category)
     store = models.ManyToManyField(Store)
+
+    def __str__(self):
+        return f'{self.product_name}'
 
