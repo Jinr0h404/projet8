@@ -1,8 +1,9 @@
-import Product.management.commands.api_get
+from Product.management.commands.api_get import Api_get
+
 
 def test_api_get(mocker):
     mocker.patch(
-        "Product.management.commands.api_get.requests.get(self.request_url, params)",
+        "api_get.requests.get(self.request_url, params)",
         return_value=[
             {
                 "count": 853836,
@@ -14,11 +15,8 @@ def test_api_get(mocker):
                         "_id": "3168930010265",
                         "brands": "QUAKER,Cruesli",
                         "categories": "Breakfasts,Cereals and their products,Breakfast cereals,Mueslis",
-
                         "checkers_tags": [],
-                        "ciqual_food_name_tags": [
-                            "muesli-average"
-                        ],
+                        "ciqual_food_name_tags": ["muesli-average"],
                         "generic_name": "",
                         "generic_name_fr": "Pépites de céréales croustillantes avec Mélange de Noix",
                         "image_front_small_url": "https://images.openfoodfacts.org/images/products/316/893/001/0265/front_fr.170.200.jpg",
@@ -51,24 +49,30 @@ def test_api_get(mocker):
                         "stores": "Intermarché,Magasins U",
                         "url": "https://fr.openfoodfacts.org/produit/3168930010265/quaker-cruesli-melange-de-noix",
                     }
-                ]
+                ],
             }
-        ]
+        ],
     )
-    list_product = Product.management.commands.api_get.Api_get
-    expected_value = [{
-                                "name": "quaker cruesli mélange de noix",
-                                "brand": "quaker,cruesli",
-                                "store": ["Intermarché", "Magasins U"],
-                                "category": ["breakfasts" , "cereals and their products", "breakfast cereals,mueslis"],
-                                "nutriscore": "A",
-                                "description": "Pépites de céréales croustillantes avec Mélange de Noix",
-                                "url": "https://fr.openfoodfacts.org/produit/3168930010265/quaker-cruesli-melange-de-noix",
-                                "product_image": "https://images.openfoodfacts.org/images/products/316/893/001/0265/front_fr.170.400.jpg",
-                                "product_image_little": "https://images.openfoodfacts.org/images/products/316/893/001/0265/front_fr.170.200.jpg",
-                                "fat": 19,
-                                "saturated_fat": 2,
-                                "salt": 0,
-                                "sugar": 12,
-                            }]
+    list_product = Api_get()
+    expected_value = [
+        {
+            "name": "quaker cruesli mélange de noix",
+            "brand": "quaker,cruesli",
+            "store": ["Intermarché", "Magasins U"],
+            "category": [
+                "breakfasts",
+                "cereals and their products",
+                "breakfast cereals,mueslis",
+            ],
+            "nutriscore": "A",
+            "description": "Pépites de céréales croustillantes avec Mélange de Noix",
+            "url": "https://fr.openfoodfacts.org/produit/3168930010265/quaker-cruesli-melange-de-noix",
+            "product_image": "https://images.openfoodfacts.org/images/products/316/893/001/0265/front_fr.170.400.jpg",
+            "product_image_little": "https://images.openfoodfacts.org/images/products/316/893/001/0265/front_fr.170.200.jpg",
+            "fat": 19,
+            "saturated_fat": 2,
+            "salt": 0,
+            "sugar": 12,
+        }
+    ]
     assert list_product.food() == expected_value

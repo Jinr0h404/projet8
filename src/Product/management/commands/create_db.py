@@ -1,12 +1,14 @@
 from django.core.management.base import BaseCommand
 from Product.models import Product, Category, Store
 from .api_get import Api_get
-#import requests
-#from User.models import User
-#from Favorite.models import Favorites
+
+# import requests
+# from User.models import User
+# from Favorite.models import Favorites
+
 
 class Command(BaseCommand):
-    help = 'initialize database'
+    help = "initialize database"
 
     def handle(self, *args, **kwargs):
         """retrieve a list of products in JSON format through Open Food Fact
@@ -39,10 +41,10 @@ class Command(BaseCommand):
                 category = category.strip()
                 """ strip() remove spaces before and after item"""
                 new_category, created = Category.objects.get_or_create(
-                    category_name=category)
+                    category_name=category
+                )
                 cat_id = new_category.pk
-                last_product.category.add(
-                    cat_id)
+                last_product.category.add(cat_id)
             """ make a loop for each store"""
             for store in i["store"]:
                 """like category, the value of the store key in the dictionary
@@ -51,5 +53,4 @@ class Command(BaseCommand):
                 store = store.strip()
                 new_store, created = Store.objects.get_or_create(store_name=store)
                 store_id = new_store.pk
-                last_product.store.add(
-                    store_id)
+                last_product.store.add(store_id)

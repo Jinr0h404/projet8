@@ -2,7 +2,7 @@ import requests
 
 
 class Api_get:
-    help = 'initialize database'
+    help = "initialize database"
 
     def __init__(self):
         """retrieve a list of products in JSON format through Open Food Fact
@@ -28,27 +28,27 @@ class Api_get:
             data_json = r.json()
             for product in data_json["products"]:
                 if (
-                        product.get("product_name_fr")
-                        and product.get("categories")
-                        and product.get("nutrition_grade_fr")
-                        and product.get("stores")
+                    product.get("product_name_fr") and
+                        product.get("categories") and
+                        product.get("nutrition_grade_fr") and
+                        product.get("stores")
                 ):
                     """generate a list of dict where each dict = a product"""
                     if product.get("product_name_fr").lower() not in self.product_list:
                         nutriments = product.get("nutriments")
-                        if not "fat_100g" in nutriments:
+                        if "fat_100g" not in nutriments:
                             fat = "NC"
                         else:
                             fat = nutriments["fat_100g"]
-                        if not "saturated-fat_100g" in nutriments:
+                        if "saturated-fat_100g" not in nutriments:
                             saturated_fat = "NC"
                         else:
                             saturated_fat = nutriments["saturated-fat_100g"]
-                        if not "salt_100g" in nutriments:
+                        if "salt_100g" not in nutriments:
                             salt = "NC"
                         else:
                             salt = nutriments["salt_100g"]
-                        if not "sugars_100g" in nutriments:
+                        if "sugars_100g" not in nutriments:
                             sugar = "NC"
                         else:
                             sugar = nutriments["sugars_100g"]
@@ -57,13 +57,13 @@ class Api_get:
                                 "name": product.get("product_name_fr").lower(),
                                 "brand": product.get("brands").lower(),
                                 "store": product.get("stores").lower().split(","),
-                                "category": product.get(
-                                    "categories").lower().split(","),
-                                "nutriscore": product.get(
-                                    "nutrition_grade_fr").upper(),
+                                "category": product.get("categories")
+                                .lower()
+                                .split(","),
+                                "nutriscore": product.get("nutrition_grade_fr").upper(),
                                 "description": product.get("generic_name_fr"),
                                 "url": product.get("url"),
-                                "product_image":product.get("image_url"),
+                                "product_image": product.get("image_url"),
                                 "product_image_little": product.get("image_small_url"),
                                 "fat": fat,
                                 "saturated_fat": saturated_fat,
@@ -71,5 +71,6 @@ class Api_get:
                                 "sugar": sugar,
                             }
                         )
-        return(self.product_list)
+        return self.product_list
+
     print("j'ai fini de check l'api open food")

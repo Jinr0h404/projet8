@@ -1,6 +1,5 @@
-import pytest
+from django.urls import resolve
 
-from django.urls import reverse, resolve
 
 def test_index_url():
     """Check if the name of the view is correct and that the URL matches the name of the view."""

@@ -11,7 +11,7 @@
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Site en construction, à très vite pour bien manger</p>
+
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <div class="col-lg-8 col-xl-6 text-center">
                         <h2 class="mt-0">Se connecter</h2>
                         <hr class="divider" />
-                        <p class="text-muted mb-5">{{ message }}</p>
+                        <p class="text-muted mb-5 error">{{ message }}</p>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
@@ -35,7 +35,7 @@
                                     {{ form.as_table }}
                                     {% csrf_token %}
                                 </table>
-                                <input type="submit" value="Se connecter" />
+                                <input name="signin" type="submit" value="Se connecter" />
                             </form>
                             <p>Pas encore membre ? <a href="/user/signup">Inscrivez-vous maintenant !</a></p>
                         </div>
