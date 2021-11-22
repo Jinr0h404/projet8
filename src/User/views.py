@@ -1,11 +1,8 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from User.forms import SignupForm, SigninForm
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from . import forms
-from User.models import CustomUser
 
 
 def index(request):

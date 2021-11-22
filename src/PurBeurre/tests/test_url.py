@@ -1,6 +1,4 @@
-import pytest
-
-from django.urls import reverse, resolve
+from django.urls import resolve
 
 
 def test_index_url():

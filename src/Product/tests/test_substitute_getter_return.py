@@ -1,7 +1,7 @@
 import pytest
 from Product.views import substitute_getter
 from Product.views import count_to_dict
-from Product.models import Product, Store, Category
+from Product.models import Product, Category
 
 
 @pytest.mark.django_db

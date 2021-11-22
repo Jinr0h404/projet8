@@ -9,8 +9,8 @@ class MyUserManager(BaseUserManager):
         if not email:
             raise ValueError("veuillez entrer un email")
         user = self.model(
-            email = self.normalize_email(email),
-            username = username
+            email=self.normalize_email(email),
+            username=username
         )
         user.set_password(password)
         user.save()
@@ -27,7 +27,7 @@ class MyUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser):
     """this class is for the django orm, it gives the parameters for the
             creation of the table of the same name in the psql database."""
-    username = models.CharField(max_length=200, null=False,blank=False, verbose_name="Nom")
+    username = models.CharField(max_length=200, null=False, blank=False, verbose_name="Nom")
     email = models.EmailField(max_length=45, unique=True, null=False, blank=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

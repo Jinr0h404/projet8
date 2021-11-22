@@ -6,6 +6,7 @@ from User.models import CustomUser
 
 @pytest.mark.django_db
 def test_favorite_model():
+    """test that the favorite model records the user, product and substitute information in the database"""
     product_list = (
         {
             "name": "nutella",

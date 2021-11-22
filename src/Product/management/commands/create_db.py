@@ -2,10 +2,6 @@ from django.core.management.base import BaseCommand
 from Product.models import Product, Category, Store
 from .api_get import Api_get
 
-# import requests
-# from User.models import User
-# from Favorite.models import Favorites
-
 
 class Command(BaseCommand):
     help = "initialize database"

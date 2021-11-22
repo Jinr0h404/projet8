@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from User.models import CustomUser
-from django.contrib.auth import get_user_model
 
 
 class SigninForm(forms.Form):
@@ -13,4 +12,3 @@ class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = ("email", 'username',)
-

@@ -4,6 +4,7 @@ from Product.models import Product, Store, Category
 
 @pytest.mark.django_db
 def test_product_model():
+    """test that the product model records the product information in the database"""
     product = Product.objects.create(
         product_name="nutella",
         brand="ferrero",
@@ -23,6 +24,7 @@ def test_product_model():
 
 @pytest.mark.django_db
 def test_category_model():
+    """test that the category model records the category information in the database"""
     category = Category.objects.create(category_name="pate à tartiner")
     expected_value = "pate à tartiner"
     assert str(category) == expected_value
@@ -30,6 +32,7 @@ def test_category_model():
 
 @pytest.mark.django_db
 def test_store_model():
+    """test that the store model records the store information in the database"""
     store = Store.objects.create(store_name="auchan")
     expected_value = "auchan"
     assert str(store) == expected_value

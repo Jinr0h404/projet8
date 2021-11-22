@@ -9,6 +9,8 @@ from Product.models import Product
 # Create your views here.
 @login_required
 def index(request):
+    """requires user authentication. Displays the list of all products saved in the favorites table for
+    the user who is logged in. Use paginator to display the result on several pages in groups of 6"""
     user_connected = CustomUser.objects.get(pk=request.user.id)
     query_list = Favorites.objects.filter(user_id=user_connected)
     products_list = []
