@@ -72,5 +72,4 @@ def test_logout_user_view():
     client.login(username=email, password=password)
     path = reverse("user-logout")
     response = client.get(path)
-    assert response.status_code == 200
-    assertTemplateUsed(response, "User/index.html")
+    assert response.status_code == 302
