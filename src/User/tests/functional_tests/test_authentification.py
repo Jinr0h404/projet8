@@ -1,8 +1,10 @@
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 from selenium.webdriver.common.by import By
+from User.models import CustomUser
 
 class TestAuthentification(StaticLiveServerTestCase):
     def test_signup(self):
@@ -43,7 +45,12 @@ class TestAuthentification(StaticLiveServerTestCase):
         )
         self.browser.close()
 
+    @pytest.mark.django_db
     def test_signin(self):
+        username = "toto"
+        email = "toto@gmail.com"
+        password = "ewen12345"
+        CustomUser.objects.create_user(username=username, email=email, password=password)
         self.s = Service("User/tests/functional_tests/chromedriver")
         self.browser = webdriver.Chrome(service=self.s)
         self.browser.get(self.live_server_url + reverse("user-signin"))
