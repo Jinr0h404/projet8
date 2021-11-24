@@ -79,7 +79,6 @@ def save_substitute(request):
 
     return redirect("/favoris")
 
-
 def product_info(request, product_id):
     query = product_id
     query_id = Product.objects.filter(pk=query)
