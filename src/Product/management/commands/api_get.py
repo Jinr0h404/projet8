@@ -73,4 +73,3 @@ class Api_get:
                         )
         return self.product_list
 
-    print("j'ai fini de check l'api open food")

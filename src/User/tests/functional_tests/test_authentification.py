@@ -6,6 +6,7 @@ from django.urls import reverse
 from selenium.webdriver.common.by import By
 from User.models import CustomUser
 
+
 class TestAuthentification(StaticLiveServerTestCase):
     def test_signup(self):
         self.s = Service("User/tests/functional_tests/chromedriver")

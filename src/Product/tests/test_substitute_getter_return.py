@@ -1,6 +1,5 @@
 import pytest
-from Product.views import substitute_getter
-from Product.views import count_to_dict
+from Product.views import substitute_getter, count_to_dict
 from Product.models import Product, Category
 
 
@@ -65,7 +64,6 @@ def test_substitute_getter():
             )
             cat_id = new_category.pk
             last_product.category.add(cat_id)
-
     id_product = 1
     expected_value = [(3, 3), (2, 1)]
     sut = substitute_getter(id_product)

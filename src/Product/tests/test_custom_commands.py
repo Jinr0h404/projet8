@@ -2,6 +2,7 @@ from Product.management.commands.api_get import Api_get
 
 
 class MockResponse:
+    """mock the request to the openfood fact"""
 
     @staticmethod
     def json():
@@ -54,6 +55,8 @@ class MockResponse:
 
 
 def test_api_get(mocker):
+    """mock the request to the openfood fact api in order to check if the api get function does return a dictionary
+    with the elements formatted and sorted"""
     mocker.patch(
         "requests.get",
         return_value=MockResponse(),

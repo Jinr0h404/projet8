@@ -20,6 +20,7 @@ def index(request):
     favorite_regroup = []
 
     for i in query_list:
+        """For each element of the favorites table whose user id is that of the connected person"""
         substitute_product.append((i.substitute_id_id, i.product_id_id))
         bad_product.append(Product.objects.get(pk=i.product_id_id))
         products_list.append(Product.objects.get(pk=i.substitute_id_id))

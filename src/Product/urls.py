@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import search, search_substitute, product_info, save_substitute
+"""the url file is used to associate an url path to a view with path"""
 
 urlpatterns = [
     path("search", search, name="product-search"),

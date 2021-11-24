@@ -2,11 +2,15 @@ import pytest
 from django.urls import reverse
 from django.test import Client
 from Product.models import Product, Category, Store
+from User.models import CustomUser
+from Favorite.models import Favorites
 from pytest_django.asserts import assertTemplateUsed
 
 
 @pytest.mark.django_db
 def test_search_view():
+    """Creates a test client. Make a request on the URL retrieved using the reverse () function.
+    Check that the HTTP status code is 200. Check that the template used is the expected one"""
     Product.objects.create(
         product_name="nutella",
         nutriscore="E",
@@ -24,6 +28,8 @@ def test_search_view():
 
 @pytest.mark.django_db
 def test_search_substitute_view():
+    """Creates a test client. Make a request on the URL retrieved using the reverse () function.
+        Check that the HTTP status code is 200. Check that the template used is the expected one"""
     product_list = (
         {
             "name": "nutella",
@@ -93,9 +99,51 @@ def test_search_substitute_view():
             new_store, created = Store.objects.get_or_create(store_name=store)
             store_id = new_store.pk
             last_product.store.add(store_id)
-
     client = Client()
     path = reverse("product-search_substitute")
-    response = client.get(path, {"query": 1})
+    response = client.get(path, {"query":"1"})
     assert response.status_code == 200
     assertTemplateUsed(response, "product/search_substitute.html")
+
+@pytest.mark.django_db
+def test_product_view():
+    """Creates a test client. Make a request on the URL retrieved using the reverse () function.
+        Check that the HTTP status code is 200. Check that the template used is the expected one"""
+    Product.objects.create(
+        product_name="nutella",
+        nutriscore="E",
+        fat="NC",
+        saturated_fat="NC",
+        salt="NC",
+        sugar="NC",
+    )
+    client = Client()
+    path = reverse("product-product_info", args=["1"])
+    response = client.get(path)
+    assert response.status_code == 200
+    assertTemplateUsed(response, "product/product_info.html")
+
+@pytest.mark.django_db
+def test_save_substitute_view():
+    """Creates a test client. Make a request on the URL retrieved using the reverse () function.
+        Check that the HTTP status code is 200. Check that the template used is the expected one"""
+    Product.objects.create(
+        product_name="nutella",
+        nutriscore="E",
+        fat="NC",
+        saturated_fat="NC",
+        salt="NC",
+        sugar="NC",
+    )
+    client = Client()
+    username = "test_user"
+    email = "troubadour@gmail.com"
+    password = "Troubadour"
+    CustomUser.objects.create_user(username=username, email=email, password=password)
+    client.login(username=email, password=password)
+    old_favorite = Favorites.objects.count()
+    path = reverse("product-save_substitute")
+    response = client.post(path, {"save":"1,1"})
+    new_favorite = Favorites.objects.count()
+    assert new_favorite == old_favorite + 1
+    assert response.status_code == 302
