@@ -8,7 +8,9 @@ from User.models import CustomUser
 
 
 class TestAuthentification(StaticLiveServerTestCase):
+    """class containing methods to check the authentication part of the application"""
     def test_signup(self):
+        """functional test with selenium to verify the user account creation scenario."""
         self.s = Service("User/tests/functional_tests/chromedriver")
         self.browser = webdriver.Chrome(service=self.s)
         self.browser.get(self.live_server_url + reverse("user-signup"))
@@ -29,6 +31,7 @@ class TestAuthentification(StaticLiveServerTestCase):
         self.browser.close()
 
     def test_signin_not_account(self):
+        """functional test with selenium to verify the user signin wihtout account."""
         self.s = Service("User/tests/functional_tests/chromedriver")
         self.browser = webdriver.Chrome(service=self.s)
         self.browser.get(self.live_server_url + reverse("user-signin"))
@@ -48,6 +51,7 @@ class TestAuthentification(StaticLiveServerTestCase):
 
     @pytest.mark.django_db
     def test_signin(self):
+        """functional test with selenium to verify the user signin scenario."""
         username = "toto"
         email = "toto@gmail.com"
         password = "ewen12345"

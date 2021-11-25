@@ -15,7 +15,8 @@ def account(request):
 
 
 def signup(request):
-    """on génère une instance de notre formulaire et on l'envoie formulaire via le context"""
+    """we generate an instance of our form and send it form via the context. If post request and form data correct
+    user is register and logged and redirect on user page"""
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -28,6 +29,8 @@ def signup(request):
 
 
 def signin(request):
+    """we generate an instance of our form and send it form via the context. If post request and form data correct
+    user is logged and redirect on user page else error message is display"""
     form = SigninForm()
     message = ""
     if request.method == "POST":
@@ -52,5 +55,6 @@ def signin(request):
 
 
 def logout_user(request):
+    """User is disconnect and redirect on the home page"""
     logout(request)
     return redirect("index")

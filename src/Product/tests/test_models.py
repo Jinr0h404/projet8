@@ -1,8 +1,10 @@
 import pytest
 from Product.models import Product, Store, Category
 
+
 @pytest.fixture
 def product_fixture(db) -> Product:
+    """creates the fixture for the test database with 3 products"""
     product_list = [
         {
             "name": "nutella",

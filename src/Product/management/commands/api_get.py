@@ -72,4 +72,3 @@ class Api_get:
                             }
                         )
         return self.product_list
-

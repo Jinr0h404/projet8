@@ -1,12 +1,11 @@
 import pytest
 from Product.views import substitute_getter, count_to_dict
-from Product.models import Product, Category
 from Product.tests.test_models import product_fixture
+
 
 @pytest.mark.django_db(reset_sequences=True)
 def test_substitute_getter(product_fixture):
     """test that the function properly sorts the list of product id in descending order of common categories"""
-
     id_product = 1
     expected_value = [(3, 3), (2, 1)]
     sut = substitute_getter(id_product)

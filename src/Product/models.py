@@ -5,7 +5,6 @@ from django.db import models
 class Category(models.Model):
     """this class is for the django orm, it gives the parameters for the
     creation of the table of the same name in the psql database."""
-
     category_name = models.CharField(
         max_length=200, unique=True, verbose_name="Catégorie"
     )
@@ -17,7 +16,6 @@ class Category(models.Model):
 class Store(models.Model):
     """this class is for the django orm, it gives the parameters for the
     creation of the table of the same name in the psql database."""
-
     store_name = models.CharField(max_length=100, unique=True, verbose_name="Magasin")
 
     def __str__(self):
@@ -27,7 +25,6 @@ class Store(models.Model):
 class Product(models.Model):
     """this class is for the django orm, it gives the parameters for the
     creation of the table of the same name in the psql database."""
-
     product_name = models.CharField(max_length=200, verbose_name="Produit")
     product_image = models.URLField(null=True)
     product_image_little = models.URLField(null=True)

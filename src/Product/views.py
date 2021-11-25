@@ -7,6 +7,8 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def search(request):
+    """get the keyword in query and do a search in the product name column for all products that contain this word.
+    uses paginator to create a presentation of 6 products per page"""
     query = request.GET.get("query")
     products_list = Product.objects.filter(product_name__icontains=query).order_by("id")
     paginator = Paginator(products_list, 6)
@@ -44,6 +46,8 @@ def substitute_getter(id_product):
 
 
 def search_substitute(request):
+    """get the id in query and use substitute_getter function for returns a list of tuple (productID, nbrCategory
+    in common) and uses paginator to create a presentation of 6 products per page"""
     query = request.GET.get("query")
     query_id = Product.objects.filter(pk=query)
     products_tuple = substitute_getter(query)
@@ -65,6 +69,8 @@ def search_substitute(request):
 
 
 def save_substitute(request):
+    """get the id of product and id of his substitute in query with post method and save it with the id of connected
+    user. Redirect the user on the favorite page"""
     query_substitute = request.POST["save"]
     query_list = query_substitute.split(",")
     if request.method == "POST":
@@ -79,7 +85,9 @@ def save_substitute(request):
 
     return redirect("/favoris")
 
+
 def product_info(request, product_id):
+    """get the id of product in the url. Display product info page with nutriscore"""
     query = product_id
     query_id = Product.objects.filter(pk=query)
     context = {
