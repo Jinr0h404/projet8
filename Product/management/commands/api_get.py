@@ -12,7 +12,7 @@ class Api_get:
         self.product_list = []
         self.pages = 20
         self.json = 1
-        self.page_size = 50
+        self.page_size = 30
         self.request_url = "https://fr.openfoodfacts.org/cgi/search.pl"
         self.clean_list = []
 
