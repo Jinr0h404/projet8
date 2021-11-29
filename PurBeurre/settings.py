@@ -26,11 +26,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-1c-u#2k=xm@*$pws%w=mh
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = True
+    DEBUG = False
+    ALLOWED_HOSTS = ['https://purbeurre-forever.herokuapp.com/']
 else:
     DEBUG = True
-
-ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -122,9 +122,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
 
 
 # Default primary key field type
