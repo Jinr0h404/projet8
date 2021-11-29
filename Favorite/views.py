@@ -44,4 +44,4 @@ def index(request):
         "favorite_regroup": favorite_regroup,
     }
 
-    return render(request, "Favorite/index.html", context)
+    return render(request, "Favorite/index_favoris.html", context)

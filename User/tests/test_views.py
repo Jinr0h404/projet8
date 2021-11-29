@@ -12,7 +12,7 @@ def test_index_user_view():
     path = reverse("user-index")
     response = client.get(path)
     assert response.status_code == 200
-    assertTemplateUsed(response, "User/index.html", "PurBeurre/base.html")
+    assertTemplateUsed(response, "User/index_user.html", "PurBeurre/base.html")
 
 
 def test_account_user_view():
