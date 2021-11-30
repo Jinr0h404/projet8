@@ -27,4 +27,4 @@ def test_index_purBeurre_connected_view():
     path = reverse("favorite-index")
     response = client.get(path)
     assert response.status_code == 200
-    assertTemplateUsed(response, "Favorite/index.html")
+    assertTemplateUsed(response, "Favorite/index_favoris.html")
