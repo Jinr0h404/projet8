@@ -20,7 +20,7 @@ def search(request):
         "paginate": True,
         "query": query,
     }
-    return render(request, "product/search.html", context)
+    return render(request, "Product/search.html", context)
 
 
 def count_to_dict(lst):
@@ -65,7 +65,7 @@ def search_substitute(request):
         "query_id": query_id,
     }
 
-    return render(request, "product/search_substitute.html", context)
+    return render(request, "Product/search_substitute.html", context)
 
 
 def save_substitute(request):
@@ -95,4 +95,4 @@ def product_info(request, product_id):
         "query": query,
         "query_id": query_id,
     }
-    return render(request, "product/product_info.html", context)
+    return render(request, "Product/product_info.html", context)
