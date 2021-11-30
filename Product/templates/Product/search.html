@@ -32,17 +32,7 @@
                     {% for product in page_obj %}
                     <tr>
                     <td><img class="img-responsive little_img" src="{{ product.product_image }}" alt="{{ product.product_name }}"></td>
-                    <td>{{product.product_name}}, son nutriscore est: {% if product.nutriscore == 'A' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.product_name }}">
-                                    {% elif product.nutriscore == 'B' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.product_name }}">
-                                    {% elif product.nutriscore == 'C' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.product_name }}">
-                                    {% elif product.nutriscore == 'D' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.product_name }}">
-                                    {% elif product.nutriscore == 'E' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.product_name }}">
-                                    {% endif %}</td>
+
                     <td>
                         <form class="col-md-6 col-md-offset-3 text-center" action="search_substitute" method="get" accept-charset="utf-8">
                             <div class="form-group">
