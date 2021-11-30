@@ -15,7 +15,7 @@ def test_search_substitute_view(product_fixture):
     path = reverse("product-search_substitute")
     response = client.get(path, {"query": "1"})
     assert response.status_code == 200
-    assertTemplateUsed(response, "product/search_substitute.html")
+    assertTemplateUsed(response, "Product/search_substitute.html")
 
 
 def test_search_view(product_fixture):
@@ -25,7 +25,7 @@ def test_search_view(product_fixture):
     path = reverse("product-search")
     response = client.get(path, {"query": "nutella"})
     assert response.status_code == 200
-    assertTemplateUsed(response, "product/search.html")
+    assertTemplateUsed(response, "Product/search.html")
 
 
 def test_product_view(product_fixture):
@@ -35,7 +35,7 @@ def test_product_view(product_fixture):
     path = reverse("product-product_info", args=["1"])
     response = client.get(path)
     assert response.status_code == 200
-    assertTemplateUsed(response, "product/product_info.html")
+    assertTemplateUsed(response, "Product/product_info.html")
 
 
 @pytest.mark.django_db(reset_sequences=True)
