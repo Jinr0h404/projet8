@@ -32,7 +32,7 @@ def substitute_getter(id_product):
     """We create a list of all the product objects having a common category with the requested product.
     For each product of the object list a new list is filled with the corresponding id.
     Returns a list of tuple (productID, nbrCategory in common) sorted in descending order of values nbr Common Category"""
-    product = Product.objects.get(pk=id_product)
+    product = get_object_or_404(Product, pk=id_product)
     list_brut = Product.objects.filter(category__in=product.category.all()).exclude(
         pk=id_product
     )
