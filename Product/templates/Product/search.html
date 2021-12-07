@@ -22,46 +22,53 @@
         </section>
         <!-- Portfolio-->
         <div id="portfolio">
-            <div class="container-fluid p-0">
+            <div class="container-fluid p-5">
                 <div class="row g-0">
-                    <div class="col">
-                    </div>
-                    <div class="col-8">
-                <table class="table table-sm table-bordered border-dark">
-                    <tbody>
                     {% for product in page_obj %}
-                    <tr>
-                    <td><img class="img-responsive little_img" src="{{ product.product_image }}" alt="{{ product.product_name }}"></td>
-                    <td>{{product.product_name}}, son nutriscore est: {% if product.nutriscore == 'A' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.product_name }}">
-                                    {% elif product.nutriscore == 'B' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.product_name }}">
-                                    {% elif product.nutriscore == 'C' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.product_name }}">
-                                    {% elif product.nutriscore == 'D' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.product_name }}">
-                                    {% elif product.nutriscore == 'E' %}
-                                        <img class="img-responsive little_nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.product_name }}">
-                                    {% endif %}</td>
-                    <td>
-                        <form class="col-md-6 col-md-offset-3 text-center" action="search_substitute" method="get" accept-charset="utf-8">
-                            <div class="form-group">
-                                <BUTTON name="query" value="{{ product.id }}" type="submit" class="btn btn-primary btn-xl">
-                                Substituts</BUTTON>
+                        <div class="col-lg-4 col-sm-6 p-5 text-center portfolioProduct card-deck">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-right">
+                                {% if product.nutriscore == 'A' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-a.png' %}" alt="{{ product.product_name }}">
+                                {% elif product.nutriscore == 'B' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-b.png' %}" alt="{{ product.product_name }}">
+                                {% elif product.nutriscore == 'C' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-c.png' %}" alt="{{ product.product_name }}">
+                                {% elif product.nutriscore == 'D' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-d.png' %}" alt="{{ product.product_name }}">
+                                {% elif product.nutriscore == 'E' %}
+                                    <img class="img-responsive nutriLetter" src="{% static 'assets/img/nutriLetter-e.png' %}" alt="{{ product.product_name }}">
+                                {% endif %}
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <a class="portfolio-box" href="product_info-{{ product.id }}" title="{{ product.product_name }}" target="_blank">
+                                        <div class="d-flex justify-content-center">
+                                            <img class="img-responsive" src="{{ product.product_image_little }}" alt="{{ product.product_name }}">
+                                        </div>
+                                    <div class="portfolio-box-caption">
+                                        <div class="project-category text-white-50">Voir fiche produit</div>
+                                        <div class="project-name">{{ product.product_name }}</div>
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="card-footer">
+                                <form action="search_substitute" method="get" accept-charset="utf-8">
+                                    <div class="form-group">
+                                        <BUTTON name="query" value="{{ product.id }}" type="submit" class="btn btn-primary btn-xl">
+                                            Substituts</BUTTON>
+                                    </div>
+                                </form>
+                                </div>
                             </div>
-                        </form>
-                    </td>
-                    </tr>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
                     {% endfor %}
-                    </tbody>
-                </table>
-                    </div>
-                    <div class="col">
-                    </div>
                 </div>
             </div>
         </div>
-            <div class="clearfix"></div>
+        <div class="clearfix"></div>
             <nav aria-label="">
                 <ul class="pager">
                     {% if page_obj.has_previous %}
